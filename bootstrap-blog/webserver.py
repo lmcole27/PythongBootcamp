@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import requests
-import smtplib, ssl
+import smtplib
+import ssl
 from email.message import EmailMessage
 import os
 from dotenv import load_dotenv
@@ -46,7 +47,7 @@ def form():
 def entry():
     print("I did it!")
     if request.method == "POST":
-        return f"<h1>Successfully sent message</h1>"
+        return "<h1>Successfully sent message</h1>"
     else:
         return render_template("contact.html")
 
