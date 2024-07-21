@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+<!--Don't forget your import here-->
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/styles.css') }}">
+
+{% block title %}Add A New Cafe{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+
+      <h1>Add a new cafe into the database</h1>
+
+        {% from 'bootstrap4/form.html' import render_form %}
+        {{ render_form(form, method='Post', novalidate=True) }}
+        {% if form.validate_on_submit(): %}
+        {{ url_for('cafes') }}
+        {% endif %}
+
+	  <p class="space-above"><a href="/cafes">See all cafes</a></p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

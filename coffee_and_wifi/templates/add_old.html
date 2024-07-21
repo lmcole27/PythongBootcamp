@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+<!--Don't forget your import here-->
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/styles.css') }}">
+{% block title %}Add A New Cafe{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+
+      <h1>Add a new cafe into the database</h1>
+      
+      {% from 'bootstrap4/form.html' import render_field %}
+    
+      <form method="POST" action="/">
+        {{ form.csrf_token }}
+        {{ render_field(form.cafe) }}
+        {{ render_field(form.location_URL) }}  
+        {{ render_field(form.open_time) }}  
+        {{ render_field(form.close_time) }}
+        {{ render_field(form.coffee_rating) }}
+        {{ render_field(form.wifi_rating) }}  
+        {{ render_field(form.power_rating) }}
+        <input type="submit" value="Submit">        
+    </form>
+      <!-- This is where your WTForm will go -->
+
+      {% from 'bootstrap4/form.html' import render_form_row %}
+
+      <form method="post">
+          {{ form.csrf_token() }}
+          {{ render_form_row([form.cafe, form.location_URL, form.open_time, form.close_time, form.coffee_rating, form.wifi_rating, form.power_rating]) }}
+          {{ render_form_row([form.submit]) }}
+
+      </form>
+
+	  <p class="space-above"><a href="/cafes">See all cafes</a></p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
